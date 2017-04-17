@@ -46,10 +46,11 @@ public class MainGameLoop {
         
          
         while(!Display.isCloseRequested()){
-//        	entity.increaseRotation(0, 1, 1);
+        	
             camera.move();
             for(Entity cube: allCubes){
             	renderer.processEntity(cube);
+            	cube.increaseRotation(0, 1, 1);
             }
             
             renderer.render(light, camera);
