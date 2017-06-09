@@ -1,5 +1,5 @@
-package renderEngine;
- 
+package malha;
+
 import java.io.FileInputStream;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -11,40 +11,22 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
 
 import models.RawModel;
- 
-public class Loader {
-     
-    private List<Integer> vaos = new ArrayList<Integer>();
+
+public class LoaderMalha {
+	
+	private List<Integer> vaos = new ArrayList<Integer>();
     private List<Integer> vbos = new ArrayList<Integer>();
-    private List<Integer> textures = new ArrayList<Integer>();
      
-    public RawModel loadToVAO(float[] positions,float[] textureCoords,float[] normals, int[] indices){
+    public RawModel loadToVAO(float[] positions, int [] indices){
         int vaoID = createVAO();
-        bindIndicesBuffer(indices);
+        bindIndicesBuffer(indices); 
         storeDataInAttributeList(0,3,positions);
-        storeDataInAttributeList(1,2,textureCoords);
-        storeDataInAttributeList(2,3,normals);
         unbindVAO();
-        return new RawModel(vaoID,indices.length);
+        return new RawModel(vaoID, indices.length);
     }
      
-    public int loadTexture(String fileName) {
-        Texture texture = null;
-        try {
-            texture = TextureLoader.getTexture("PNG",
-                    new FileInputStream("res/" + fileName + ".png"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Tried to load texture " + fileName + ".png , didn't work");
-            System.exit(-1);
-        }
-        textures.add(texture.getTextureID());
-        return texture.getTextureID();
-    }
      
     public void cleanUp(){
         for(int vao:vaos){
@@ -52,9 +34,6 @@ public class Loader {
         }
         for(int vbo:vbos){
             GL15.glDeleteBuffers(vbo);
-        }
-        for(int texture:textures){
-            GL11.glDeleteTextures(texture);
         }
     }
      
@@ -102,5 +81,4 @@ public class Loader {
     }
      
      
- 
 }
