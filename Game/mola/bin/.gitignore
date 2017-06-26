@@ -1,6 +1,11 @@
 /engineTester/
+/entities/
+/models/
 /renderEngine/
 /shaders/
-/textures/
 /terrain/
-/entities/
+/textures/
+/toolbox/
+/arquivos/
+/malha/
+/Teste.class

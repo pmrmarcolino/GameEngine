@@ -21,12 +21,10 @@ public class ProcessaArquivo {
 		try {
 			BufferedReader lerArq = new BufferedReader(arq);
 
-			linha = lerArq.readLine(); // lê a primeira linha
-			// a variável "linha" recebe o valor "null" quando o processo
-			// de repetição atingir o final do arquivo texto
+			linha = lerArq.readLine(); 
 			while (linha != null) {
 				processos = Arrays.asList(linha.split(","));
-				linha = lerArq.readLine(); // lê da segunda até a última linha
+				linha = lerArq.readLine(); 
 			}
 
 			arq.close();

@@ -66,7 +66,5 @@ public class EntityRenderer {
         shader.loadTransformationMatrix(transformationMatrix);
     }
     
-     
-
  
 }
